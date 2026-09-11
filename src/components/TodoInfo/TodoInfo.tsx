@@ -22,7 +22,9 @@ interface Props {
 export const TodoInfo = ({ todo }: Props) => {
   return (
     <article
-      className={`TodoInfo ${todo.completed ? 'TodoInfo--completed' : ''}`}
+      className={`TodoInfo ${
+        todo.completed ? 'TodoInfo--completed' : ''
+      }`}
       data-id={todo.id}
     >
       <h2 className="TodoInfo__title">{todo.title}</h2>

@@ -1,4 +1,3 @@
-import usersFromServer from '../../api/users';
 import { TodoInfo } from '../TodoInfo/TodoInfo';
 
 interface User {
@@ -13,7 +12,7 @@ interface Todo {
   title: string;
   userId: number;
   completed: boolean;
-  user?: User;
+  user: User;
 }
 
 interface Props {
@@ -23,25 +22,9 @@ interface Props {
 export const TodoList = ({ todos }: Props) => {
   return (
     <section className="TodoList">
-      {todos.map(todo => {
-        const user =
-          todo.user ||
-          usersFromServer.find(currentUser => currentUser.id === todo.userId);
-
-        if (!user) {
-          return null;
-        }
-
-        return (
-          <TodoInfo
-            todo={{
-              ...todo,
-              user,
-            }}
-            key={todo.id}
-          />
-        );
-      })}
+      {todos.map(todo => (
+        <TodoInfo todo={todo} key={todo.id} />
+      ))}
     </section>
   );
 };
